@@ -11,35 +11,25 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* B.Eng. in Computer Science and Engineering, Southern University of Science and Technology, 2026 (expected)
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Jan 2024 ~ Present: Undergraduate Research Intern
+  * ARiSE Lab, Southern University of Science and Technology
+  * Research topics: Automated Program Repair, Large Language Model Pretraining
+  * Supervisor: [Yuqun Zhang](https://zhangyuqun.github.io/)
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Sep 2024 ~ Present: Research Assistant
+  * Artificial Intelligence Research Institute, Shenzhen MSU-BIT University
+  * Research topics: Diffusion Models, Flow Matching, Layout Generation
+  * Supervisor: [Xitong Li](https://sites.google.com/view/xitong-li/), [Shijie Zhang](https://ai.smbu.edu.cn/info/1261/1981.htm)
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **Programming Languages**: C++, C, Java, Python, SQL, JavaScript, MATLAB.
+* **Technologies**: PyTorch, TensorFlow, Mindspore, Django, Flask, Springboot, Vue.
+* **Human Languages**: Mandarin (Native), English (C1), Spanish (B1).
 
 Publications
 ======
@@ -61,4 +51,4 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Active member of SUSTech Supercomputing Team
