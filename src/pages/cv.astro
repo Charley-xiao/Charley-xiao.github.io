@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="CV | Qiwen Xiao" description="Curriculum Vitae of Qiwen Xiao">
+  <section class="py-10">
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+      <h1 class="text-4xl font-semibold tracking-tight">CV</h1>
+      <a href="/cv/Qiwen_Xiao_CV.pdf" class="rounded-2xl border border-white/15 px-5 py-3 hover:bg-white/5">
+        Download PDF
+      </a>
+    </div>
+
+    <div class="overflow-hidden rounded-3xl border border-white/10">
+      <iframe
+        src="/cv/Qiwen_Xiao_CV.pdf"
+        class="h-[85vh] w-full"
+        title="CV PDF"
+      ></iframe>
+    </div>
+  </section>
+</BaseLayout>

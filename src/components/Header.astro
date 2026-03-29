@@ -1,0 +1,20 @@
+---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/research', label: 'Research' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
+  { href: '/cv', label: 'CV' }
+];
+---
+
+<header class="border-b border-white/10">
+  <div class="container-shell flex items-center justify-between py-5">
+    <a href="/" class="text-lg font-semibold tracking-tight">Qiwen Xiao</a>
+    <nav class="flex gap-5 text-sm text-slate-300">
+      {nav.map((item) => (
+        <a href={item.href} class="hover:text-white">{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>

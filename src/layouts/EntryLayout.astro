@@ -1,0 +1,39 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Tag from '../components/Tag.astro';
+
+const { entry } = Astro.props;
+const data = entry.data;
+---
+
+<BaseLayout title={`${data.title} | Qiwen Xiao`} description={data.summary}>
+  <article class="mx-auto max-w-4xl">
+    <div class="mb-8">
+      <p class="mb-2 text-sm text-slate-400">
+        {data.organization ? `${data.organization} · ` : ''}{data.year}
+      </p>
+      <h1 class="text-4xl font-semibold tracking-tight">{data.title}</h1>
+      <p class="mt-4 text-lg text-slate-300">{data.summary}</p>
+
+      <div class="mt-5 flex flex-wrap gap-2">
+        {data.tags.map((tag: string) => <Tag label={tag} />)}
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href={data.reportUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Report</a>
+        <a href={data.repoUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Repository</a>
+        <a href={data.paperUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Paper</a>
+        <a href={data.demoUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Demo</a>
+        <a href={data.posterUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Poster</a>
+      </div>
+    </div>
+
+    <div class="mb-8 overflow-hidden rounded-3xl border border-white/10">
+      <img src={data.teaser} alt={`${data.title} teaser`} class="h-auto w-full" />
+    </div>
+
+    <div class="prose-custom">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

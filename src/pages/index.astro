@@ -1,17 +1,38 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Card from '../components/Card.astro';
+import { getCollection } from 'astro:content';
 
+const research = (await getCollection('research'))
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 3);
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 4);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Qiwen Xiao" description="Personal website of Qiwen Xiao">
+  <Hero />
+
+  <section class="mt-8">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 class="text-3xl font-semibold">Selected Research</h2>
+      <a href="/research" class="text-sm text-blue-300 hover:text-blue-200">See all</a>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {research.map((item) => <Card href={`/research/${item.id}/`} item={item} />)}
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 class="text-3xl font-semibold">Selected Projects</h2>
+      <a href="/projects" class="text-sm text-blue-300 hover:text-blue-200">See all</a>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      {projects.map((item) => <Card href={`/projects/${item.id}/`} item={item} />)}
+    </div>
+  </section>
+</BaseLayout>

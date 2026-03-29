@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0b1020;
+  --panel: #121933;
+  --text: #e8ecf3;
+  --muted: #a7b0c0;
+  --accent: #8ab4ff;
+  --border: rgba(255,255,255,0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at top, #162041 0%, #0b1020 45%, #0b1020 100%);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container-shell {
+  @apply mx-auto max-w-6xl px-6;
+}
+
+.card-surface {
+  background: rgba(18, 25, 51, 0.8);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.prose-custom h1,
+.prose-custom h2,
+.prose-custom h3,
+.prose-custom h4 {
+  @apply text-white;
+}
+
+.prose-custom p {
+  @apply text-slate-300 leading-7;
+}
+
+.prose-custom a {
+  @apply text-blue-300 underline underline-offset-4;
+}
+
+.prose-custom ul {
+  @apply list-disc pl-6 text-slate-300;
+}
