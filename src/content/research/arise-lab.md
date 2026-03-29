@@ -7,7 +7,7 @@ organization: "SUSTech"
 dateRange: "Jan 2024 – Jul 2025"
 tags: ["LLMs for Code", "Program Repair", "Code Intelligence", "Megatron"]
 featured: true
-teaser: "/images/placeholders/teaser-placeholder.svg"
+teaser: "/images/research/arise-teaser.png"
 reportUrl: "#"
 repoUrl: "#"
 paperUrl: "#"
@@ -16,4 +16,4 @@ posterUrl: "#"
 order: 70
 ---
 
-Placeholder for teaser figure.
+Details coming soon.

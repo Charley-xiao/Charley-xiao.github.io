@@ -7,16 +7,16 @@ organization: "UC Irvine"
 dateRange: "Jan 2026 – Mar 2026"
 tags: ["HPC", "Triton", "LLM Inference", "GPU Kernels"]
 featured: true
-teaser: "/images/placeholders/teaser-placeholder.svg"
+teaser: "/images/research/hpc-forge-teaser.png"
 reportUrl: "#"
 repoUrl: "#"
 paperUrl: "#"
 demoUrl: "#"
 posterUrl: "#"
-order: 100
+order: 80
 ---
 
-Placeholder for teaser figure.
+Details coming soon.
 
 Advised by Prof. Aparna Chandramowlishwaran under EECS 199.
 

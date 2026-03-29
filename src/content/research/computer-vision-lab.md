@@ -7,7 +7,7 @@ organization: "UC Irvine"
 dateRange: "Sep 2025 – Jan 2026"
 tags: ["Computer Vision", "Remote Sensing", "XGBoost", "Scientific Modeling"]
 featured: false
-teaser: "/images/placeholders/teaser-placeholder.svg"
+teaser: "/images/research/cvl-teaser.png"
 reportUrl: "#"
 repoUrl: "#"
 paperUrl: "#"
@@ -16,6 +16,6 @@ posterUrl: "#"
 order: 90
 ---
 
-Placeholder for teaser figure.
+Details coming soon.
 
 Advised by Prof. Glenn Healey under EECS 199.

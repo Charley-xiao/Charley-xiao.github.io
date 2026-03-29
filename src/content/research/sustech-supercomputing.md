@@ -7,13 +7,14 @@ organization: "SUSTech"
 dateRange: "Sep 2023 – Sep 2025"
 tags: ["Supercomputing", "HPC", "Competitions", "CloverLeaf"]
 featured: false
-teaser: "/images/placeholders/teaser-placeholder.svg"
+teaser: "/images/research/supercomputing-teaser.png"
 reportUrl: "#"
 repoUrl: "#"
 paperUrl: "#"
 demoUrl: "#"
 posterUrl: "#"
-order: 60
+order: 100
 ---
 
-Placeholder for teaser figure.
+
+SUSTech SuperComputing Competition: https://handicraft-computing-team.github.io/sustcsc-doc/
