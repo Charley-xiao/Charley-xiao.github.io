@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Physics-Guided Conditional Flow Matching for Lensless Imaging"
 year: 2026
 summary: "A conditional generative approach to diffuser-based lensless reconstruction that improves over ADMM and supervised U-Net baselines, with x-prediction performing best in our study."
@@ -62,4 +62,7 @@ The next figure shows how a v-prediction CFM reconstruction evolves as the ODE s
 
 ## Course context
 
-This project was completed as the final project for **EECS298: Computational Optics** at UC Irvine, where it received the **Best Technical Project Award**.
+This project was completed as the final project for **EECS298: Computational Optics** at UC Irvine, where it received the **Best Technical Project Award**. -->
+
+
+This content is temporarily unavailable.
