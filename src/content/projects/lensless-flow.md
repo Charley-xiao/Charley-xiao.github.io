@@ -1,4 +1,4 @@
-<!-- ---
+---
 title: "Physics-Guided Conditional Flow Matching for Lensless Imaging"
 year: 2026
 summary: "A conditional generative approach to diffuser-based lensless reconstruction that improves over ADMM and supervised U-Net baselines, with x-prediction performing best in our study."
@@ -7,15 +7,15 @@ organization: "UC Irvine"
 tags: ["Lensless Imaging", "Flow Matching", "Computational Optics", "PyTorch", "Best Technical Project Award", "Project Lead"]
 featured: true
 teaser: "/images/projects/lensless-flow-teaser.png"
-reportUrl: "/reports/lensless-flow-report.pdf"
+reportUrl: "#" # "/reports/lensless-flow-report.pdf"
 repoUrl: "https://github.com/Charley-xiao/lensless-flow"
 paperUrl: "#"
 demoUrl: "#"
-posterUrl: "/slides/lensless-flow-presentation.pdf"
+posterUrl: "#" # "/slides/lensless-flow-presentation.pdf"
 order: 100
 ---
 
-This project studies **conditional flow matching (CFM)** for diffuser-based lensless image reconstruction. Instead of treating reconstruction as a purely optimization-based inverse problem or a deterministic regression task, the project formulates it as **conditional generation**: given a lensless measurement \(y\), learn a model of plausible images \(x\) conditioned on that measurement.
+<!-- This project studies **conditional flow matching (CFM)** for diffuser-based lensless image reconstruction. Instead of treating reconstruction as a purely optimization-based inverse problem or a deterministic regression task, the project formulates it as **conditional generation**: given a lensless measurement \(y\), learn a model of plausible images \(x\) conditioned on that measurement.
 
 The goal is to reconstruct high-fidelity images from highly multiplexed diffuser measurements while reducing the structured artifacts often seen in classical iterative methods.
 
