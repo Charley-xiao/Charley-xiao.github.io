@@ -1,0 +1,58 @@
+---
+import Tag from './Tag.astro';
+import type { HighlightItem } from '../data/highlights';
+
+interface Props {
+  items: HighlightItem[];
+  compact?: boolean;
+  columns?: 1 | 2;
+  showTags?: boolean;
+}
+
+const {
+  items,
+  compact = false,
+  columns = 1,
+  showTags = !compact
+} = Astro.props;
+
+const gridClass = columns === 2 ? 'grid gap-6 xl:grid-cols-2' : 'grid gap-5';
+const isExternalLink = (href: string) => href.startsWith('http') || href.endsWith('.pdf');
+---
+
+<div class={gridClass}>
+  {items.map((item) => (
+    <article class={`card-surface rounded-3xl ${compact ? 'p-5' : 'p-6'}`}>
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div class="max-w-3xl">
+          <p class="text-sm text-blue-300">{item.subtitle}</p>
+          <h3 class={`mt-2 font-semibold text-white ${compact ? 'text-lg' : 'text-xl'}`}>{item.title}</h3>
+        </div>
+        <p class="shrink-0 text-sm text-slate-400">{item.date}</p>
+      </div>
+
+      <p class={`mt-4 text-slate-300 ${compact ? 'text-sm leading-6' : 'leading-7'}`}>{item.summary}</p>
+
+      {showTags && item.tags && item.tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {item.tags.map((tag) => <Tag label={tag} />)}
+        </div>
+      )}
+
+      {item.links && item.links.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-4 text-sm">
+          {item.links.map((link) => (
+            <a
+              href={link.href}
+              class="text-blue-300 hover:text-blue-200"
+              target={isExternalLink(link.href) ? '_blank' : undefined}
+              rel={isExternalLink(link.href) ? 'noreferrer' : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </article>
+  ))}
+</div>

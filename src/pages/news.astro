@@ -1,0 +1,18 @@
+---
+import HighlightList from '../components/HighlightList.astro';
+import { newsItems } from '../data/highlights';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="News | Qiwen Xiao" description="Recent milestones, research updates, and project news from Qiwen Xiao">
+  <section class="py-8">
+    <h1 class="text-4xl font-semibold tracking-tight">News</h1>
+    <p class="mt-4 max-w-3xl text-slate-300">
+      Recent milestones across research, coursework, and engineering projects.
+    </p>
+  </section>
+
+  <section>
+    <HighlightList items={newsItems} columns={2} />
+  </section>
+</BaseLayout>

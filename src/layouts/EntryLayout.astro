@@ -4,6 +4,17 @@ import Tag from '../components/Tag.astro';
 
 const { entry } = Astro.props;
 const data = entry.data;
+const hasActionUrl = (url?: string) => {
+  const normalizedUrl = url?.trim();
+  return Boolean(normalizedUrl && normalizedUrl !== '#');
+};
+const actionLinks = [
+  { href: data.reportUrl, label: 'Report' },
+  { href: data.repoUrl, label: 'Repository' },
+  { href: data.paperUrl, label: 'Paper' },
+  { href: data.demoUrl, label: 'Demo' },
+  { href: data.posterUrl, label: 'Slides' }
+].filter(({ href }) => hasActionUrl(href));
 ---
 
 <BaseLayout title={`${data.title} | Qiwen Xiao`} description={data.summary}>
@@ -19,13 +30,15 @@ const data = entry.data;
         {data.tags.map((tag: string) => <Tag label={tag} />)}
       </div>
 
-      <div class="mt-6 flex flex-wrap gap-3 text-sm">
-        <a href={data.reportUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Report</a>
-        <a href={data.repoUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Repository</a>
-        <a href={data.paperUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Paper</a>
-        <a href={data.demoUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Demo</a>
-        <a href={data.posterUrl} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">Slides</a>
-      </div>
+      {actionLinks.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-3 text-sm">
+          {actionLinks.map(({ href, label }) => (
+            <a href={href} class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/5">
+              {label}
+            </a>
+          ))}
+        </div>
+      )}
     </div>
 
     <div class="mb-8 overflow-hidden rounded-3xl border border-white/10">

@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Card from '../components/Card.astro';
+import HighlightList from '../components/HighlightList.astro';
+import { awardItems, newsItems, publicationItems } from '../data/highlights';
 import { getCollection } from 'astro:content';
 
 const research = (await getCollection('research'))
@@ -11,10 +13,30 @@ const research = (await getCollection('research'))
 const projects = (await getCollection('projects'))
   .sort((a, b) => b.data.order - a.data.order)
   .slice(0, 4);
+
+const latestNews = newsItems.slice(0, 2);
+const featuredPublications = publicationItems.slice(0, 2);
+const featuredAwards = awardItems.slice(0, 2);
 ---
 
 <BaseLayout title="Qiwen Xiao" description="Personal website of Qiwen Xiao">
   <Hero />
+
+  <section class="mt-16">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 class="text-3xl font-semibold">Latest News</h2>
+      <a href="/news" class="text-sm text-blue-300 hover:text-blue-200">See all</a>
+    </div>
+    <HighlightList items={latestNews} compact={true} columns={2} />
+  </section>
+
+  <section class="mt-16">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 class="text-3xl font-semibold">Publications</h2>
+      <a href="/publications" class="text-sm text-blue-300 hover:text-blue-200">See all</a>
+    </div>
+    <HighlightList items={featuredPublications} compact={true} columns={2} />
+  </section>
 
   <section class="mt-8">
     <div class="mb-6 flex items-end justify-between">
@@ -34,5 +56,13 @@ const projects = (await getCollection('projects'))
     <div class="grid gap-6 md:grid-cols-2">
       {projects.map((item) => <Card href={`/projects/${item.id}/`} item={item} />)}
     </div>
+  </section>
+
+  <section class="mt-16">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 class="text-3xl font-semibold">Awards</h2>
+      <a href="/awards" class="text-sm text-blue-300 hover:text-blue-200">See all</a>
+    </div>
+    <HighlightList items={featuredAwards} compact={true} columns={2} />
   </section>
 </BaseLayout>

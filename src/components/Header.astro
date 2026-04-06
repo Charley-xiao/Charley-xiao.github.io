@@ -3,15 +3,18 @@ const nav = [
   { href: '/', label: 'Home' },
   { href: '/research', label: 'Research' },
   { href: '/projects', label: 'Projects' },
+  { href: '/news', label: 'News' },
+  { href: '/publications', label: 'Publications' },
+  { href: '/awards', label: 'Awards' },
   { href: '/about', label: 'About' },
   { href: '/cv', label: 'CV' }
 ];
 ---
 
 <header class="border-b border-white/10">
-  <div class="container-shell flex items-center justify-between py-5">
+  <div class="container-shell flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">
     <a href="/" class="text-lg font-semibold tracking-tight">Qiwen Xiao</a>
-    <nav class="flex gap-5 text-sm text-slate-300">
+    <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-300 md:justify-end">
       {nav.map((item) => (
         <a href={item.href} class="hover:text-white">{item.label}</a>
       ))}

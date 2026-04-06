@@ -1,0 +1,18 @@
+---
+import HighlightList from '../components/HighlightList.astro';
+import { awardItems } from '../data/highlights';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Awards | Qiwen Xiao" description="Selected awards and recognitions earned by Qiwen Xiao">
+  <section class="py-8">
+    <h1 class="text-4xl font-semibold tracking-tight">Awards</h1>
+    <p class="mt-4 max-w-3xl text-slate-300">
+      Selected academic recognitions and project distinctions.
+    </p>
+  </section>
+
+  <section>
+    <HighlightList items={awardItems} />
+  </section>
+</BaseLayout>

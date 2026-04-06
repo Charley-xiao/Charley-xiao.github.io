@@ -11,11 +11,11 @@ const commonSchema = z.object({
   tags: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
   teaser: z.string(),
-  reportUrl: z.string().default('#'),
-  repoUrl: z.string().default('#'),
-  paperUrl: z.string().default('#'),
-  demoUrl: z.string().default('#'),
-  posterUrl: z.string().default('#'),
+  reportUrl: z.string().default(''),
+  repoUrl: z.string().default(''),
+  paperUrl: z.string().default(''),
+  demoUrl: z.string().default(''),
+  posterUrl: z.string().default(''),
   order: z.number().default(0)
 });
 
