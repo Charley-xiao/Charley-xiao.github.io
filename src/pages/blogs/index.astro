@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('blogs')).sort((a, b) => b.data.order - a.data.order);
+---
+
+<BaseLayout title="Blogs | Qiwen Xiao" description="Notes on papers, talks, and thoughts by Qiwen Xiao">
+  <section class="py-8">
+    <h1 class="text-4xl font-semibold tracking-tight">Blogs</h1>
+    <p class="mt-4 max-w-3xl text-slate-300">
+      Notes on papers, talks, experiments, and thoughts that are still taking shape.
+    </p>
+  </section>
+
+  <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    {items.map((item) => <Card href={`/blogs/${item.id}/`} item={item} />)}
+  </section>
+</BaseLayout>

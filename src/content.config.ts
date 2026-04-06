@@ -29,7 +29,13 @@ const projects = defineCollection({
   schema: commonSchema
 });
 
+const blogs = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blogs' }),
+  schema: commonSchema
+});
+
 export const collections = {
   research,
-  projects
+  projects,
+  blogs
 };

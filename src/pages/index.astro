@@ -6,6 +6,10 @@ import HighlightList from '../components/HighlightList.astro';
 import { awardItems, newsItems, publicationItems } from '../data/highlights';
 import { getCollection } from 'astro:content';
 
+const blogs = (await getCollection('blogs'))
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 3);
+
 const research = (await getCollection('research'))
   .sort((a, b) => b.data.order - a.data.order)
   .slice(0, 3);
@@ -64,5 +68,15 @@ const featuredAwards = awardItems.slice(0, 2);
       <a href="/awards" class="text-sm text-blue-300 hover:text-blue-200">See all</a>
     </div>
     <HighlightList items={featuredAwards} compact={true} columns={2} />
+  </section>
+
+  <section class="mt-16">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 class="text-3xl font-semibold">Recent Blogs</h2>
+      <a href="/blogs" class="text-sm text-blue-300 hover:text-blue-200">See all</a>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {blogs.map((item) => <Card href={`/blogs/${item.id}/`} item={item} />)}
+    </div>
   </section>
 </BaseLayout>
