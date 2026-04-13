@@ -7,9 +7,9 @@ const { href, item } = Astro.props;
 <a href={href} class="card-surface block overflow-hidden rounded-3xl transition hover:-translate-y-1">
   <img src={item.data.teaser} alt={`${item.data.title} teaser`} class="aspect-[16/9] w-full object-cover" />
   <div class="p-5">
-    <p class="text-sm text-slate-400">{item.data.year}</p>
-    <h3 class="mt-1 text-xl font-semibold text-white">{item.data.title}</h3>
-    <p class="mt-3 text-sm leading-6 text-slate-300">{item.data.summary}</p>
+    <p class="text-muted-ui text-sm">{item.data.year}</p>
+    <h3 class="text-main-ui mt-1 text-xl font-semibold">{item.data.title}</h3>
+    <p class="text-soft-ui mt-3 text-sm leading-6">{item.data.summary}</p>
     <div class="mt-4 flex flex-wrap gap-2">
       {item.data.tags.map((tag: string) => <Tag label={tag} />)}
     </div>
