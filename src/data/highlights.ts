@@ -16,9 +16,8 @@ export const newsItems: HighlightItem[] = [
   {
     date: 'Spring 2026',
     title: 'Lensless imaging final project received Best Technical Project Award',
-    subtitle: 'UC Irvine · EECS298 Computational Optics',
-    summary:
-      '',
+    subtitle: 'UC Irvine / EECS298 Computational Optics',
+    summary: '',
     tags: ['Lensless Imaging', 'Flow Matching'],
     links: [
       { href: '/projects/lensless-flow/', label: 'Project page' },
@@ -28,7 +27,7 @@ export const newsItems: HighlightItem[] = [
   // {
   //   date: 'Winter 2026',
   //   title: 'Started HPC kernel research at HPC Forge',
-  //   subtitle: 'UC Irvine · Undergraduate Research',
+  //   subtitle: 'UC Irvine / Undergraduate Research',
   //   summary:
   //     'Began studying fused W4A16 INT4 weight-only GEMM in Triton for LLM inference, with implementations and benchmarks spanning decode and prefill regimes.',
   //   tags: ['HPC', 'Triton', 'LLM Inference'],
@@ -37,7 +36,7 @@ export const newsItems: HighlightItem[] = [
   // {
   //   date: 'Fall 2025',
   //   title: 'Joined the Computer Vision Lab at UC Irvine',
-  //   subtitle: 'UC Irvine · Undergraduate Research',
+  //   subtitle: 'UC Irvine / Undergraduate Research',
   //   summary:
   //     'Started remote sensing research on vegetation water thickness estimation using spectral modeling, XGBoost, and Levenberg-Marquardt optimization.',
   //   tags: ['Remote Sensing', 'XGBoost'],
@@ -46,7 +45,7 @@ export const newsItems: HighlightItem[] = [
   // {
   //   date: 'Fall 2024',
   //   title: 'Began first-author StyleMeta research',
-  //   subtitle: 'Shenzhen MSU-BIT University · AI Research Institute',
+  //   subtitle: 'Shenzhen MSU-BIT University / AI Research Institute',
   //   summary:
   //     'Started developing StyleMeta, a meta network that combines flow matching with dynamic parameter generation for efficient multi-style graphical layout generation.',
   //   tags: ['Flow Matching', 'Layout Generation'],
@@ -58,7 +57,7 @@ export const publicationItems: HighlightItem[] = [
   // {
   //   date: '2026',
   //   title: 'StyleMeta: Meta Network for Multi-Style Graphical Layout Generation',
-  //   subtitle: 'Under review · ICWS 2026',
+  //   subtitle: 'Under review / ICWS 2026',
   //   summary:
   //     'First-author work on efficient multi-style graphical layout generation using a meta network with flow matching and dynamic parameter generation.',
   //   tags: ['Flow Matching', 'Meta Networks', 'Layout Generation'],
@@ -67,7 +66,7 @@ export const publicationItems: HighlightItem[] = [
   // {
   //   date: '2025',
   //   title: 'ODE Samplers for Rectified Flow Generative Models',
-  //   subtitle: 'Technical report · UC Irvine CS274E',
+  //   subtitle: 'Technical report / UC Irvine CS274E',
   //   summary:
   //     'A comparative study of six ODE solvers for rectified flow on EuroSAT, with analysis of quality, runtime, and trajectory behavior.',
   //   tags: ['Rectified Flow', 'ODE Solvers', 'Generative Models'],
@@ -80,7 +79,7 @@ export const publicationItems: HighlightItem[] = [
   // {
   //   date: '2024',
   //   title: 'Explainable Writing Style Detection',
-  //   subtitle: 'Technical report · UC Davis ECS171',
+  //   subtitle: 'Technical report / UC Davis ECS171',
   //   summary:
   //     'An interpretable authorship attribution system that combines fastText with SHAP and LIME to make predictions understandable to end users.',
   //   tags: ['NLP', 'Explainability', 'Authorship Attribution'],
@@ -96,7 +95,7 @@ export const awardItems: HighlightItem[] = [
   {
     date: '2026',
     title: 'Best Technical Project Award',
-    subtitle: 'UC Irvine · EECS298 Computational Optics',
+    subtitle: 'UC Irvine / EECS298 Computational Optics',
     summary:
       'Received for the lensless imaging final project on physics-guided conditional flow matching for diffuser-based reconstruction.',
     tags: ['Lensless Imaging', 'Final Project'],
@@ -134,5 +133,5 @@ export const awardItems: HighlightItem[] = [
     summary:
       'Won provincial second prize in the National Olympiad for Informatics in both 2019 and 2020.',
     tags: ['Algorithms', 'Olympiad for Informatics', 'Competition']
-  },
+  }
 ];

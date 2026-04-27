@@ -4,15 +4,24 @@ import { publicationItems } from '../data/highlights';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Publications | Qiwen Xiao" description="Papers, reports, and technical writing by Qiwen Xiao">
-  <section class="py-8">
-    <h1 class="text-4xl font-semibold tracking-tight">Publications</h1>
-    <p class="text-soft-ui mt-4 max-w-3xl">
-      Papers from recent work.
-    </p>
-  </section>
+<BaseLayout title="Publications | Qiwen Xiao" description="Papers and technical writing by Qiwen Xiao">
+  <div class="space-y-4">
+    <section class="section-panel p-5">
+      <p class="page-kicker">Index</p>
+      <h1 class="page-title mt-2">Publications</h1>
+      <p class="page-subtitle">
+        Papers, reports, and technical writing.
+      </p>
+    </section>
 
-  <section>
-    <HighlightList items={publicationItems} />
-  </section>
+    <section>
+      {publicationItems.length > 0 ? (
+        <HighlightList items={publicationItems} />
+      ) : (
+        <div class="section-panel p-5 text-sm text-soft-ui">
+          No publication records are posted yet. The page structure is ready when they are.
+        </div>
+      )}
+    </section>
+  </div>
 </BaseLayout>

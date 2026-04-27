@@ -6,15 +6,18 @@ import { getCollection } from 'astro:content';
 const items = (await getCollection('projects')).sort((a, b) => b.data.order - a.data.order);
 ---
 
-<BaseLayout title="Projects | Qiwen Xiao" description="Projects by Qiwen Xiao">
-  <section class="py-8">
-    <h1 class="text-4xl font-semibold tracking-tight">Projects</h1>
-    <p class="text-soft-ui mt-4 max-w-3xl">
-      Selected course, research, and engineering projects in various topics.
-    </p>
-  </section>
+<BaseLayout title="Projects | Qiwen Xiao" description="Project submissions by Qiwen Xiao">
+  <div class="space-y-4">
+    <section class="section-panel p-5">
+      <p class="page-kicker">Index</p>
+      <h1 class="page-title mt-2">Projects</h1>
+      <p class="page-subtitle">
+        Course work, engineering builds, and experimental systems with enough structure to deserve their own record.
+      </p>
+    </section>
 
-  <section class="grid gap-6 md:grid-cols-2">
-    {items.map((item) => <Card href={`/projects/${item.id}/`} item={item} />)}
-  </section>
+    <section class="space-y-3">
+      {items.map((item) => <Card href={`/projects/${item.id}/`} item={item} />)}
+    </section>
+  </div>
 </BaseLayout>

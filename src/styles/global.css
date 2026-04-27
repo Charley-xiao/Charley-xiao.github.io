@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #fff3e3;
-  --bg-deep: #ffd8bb;
-  --panel: rgba(255, 249, 242, 0.84);
-  --panel-strong: rgba(255, 244, 232, 0.96);
-  --text: #4f2417;
-  --soft: #6f3a28;
-  --muted: #9a6a53;
-  --accent: #ffbf55;
-  --accent-strong: #f08b3e;
-  --accent-warm: #d85b35;
-  --accent-gold: #b86a19;
-  --border: rgba(216, 112, 53, 0.18);
-  --border-strong: rgba(216, 91, 53, 0.3);
-  --shadow: rgba(145, 78, 30, 0.14);
+  --bg: #eef2f7;
+  --bg-alt: #f8fafc;
+  --panel: #ffffff;
+  --panel-subtle: #f7f9fc;
+  --text: #26313f;
+  --soft: #49586b;
+  --muted: #718096;
+  --brand: #3b6fa5;
+  --brand-dark: #2f5d91;
+  --brand-soft: #ecf3fb;
+  --link: #2d6aa2;
+  --link-hover: #1f4f7c;
+  --border: #d9e1ea;
+  --border-strong: #bdcad8;
+  --shadow: rgba(27, 39, 51, 0.08);
 }
 
 html {
@@ -22,13 +23,9 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at 8% 8%, rgba(255, 189, 91, 0.55) 0%, transparent 28%),
-    radial-gradient(circle at 92% 2%, rgba(236, 124, 76, 0.36) 0%, transparent 25%),
-    radial-gradient(circle at 48% 100%, rgba(255, 220, 165, 0.44) 0%, transparent 42%),
-    linear-gradient(180deg, #fff8ef 0%, var(--bg) 42%, var(--bg-deep) 100%);
+  background: linear-gradient(180deg, #f7f9fc 0%, var(--bg) 100%);
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }
 
@@ -37,16 +34,16 @@ a {
 }
 
 .container-shell {
-  @apply mx-auto max-w-6xl px-6;
+  @apply mx-auto max-w-6xl px-4 sm:px-6;
 }
 
-.card-surface {
-  background: linear-gradient(180deg, rgba(255, 252, 247, 0.84), rgba(255, 240, 226, 0.96));
+.card-surface,
+.surface-frame,
+.section-panel {
+  background: var(--panel);
   border: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.65),
-    0 18px 45px var(--shadow);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px var(--shadow);
 }
 
 .text-main-ui {
@@ -62,25 +59,51 @@ a {
 }
 
 .accent-kicker {
-  color: var(--accent-gold);
+  color: var(--muted);
+}
+
+.page-kicker {
+  @apply text-[11px] font-semibold uppercase tracking-[0.08em];
+  color: var(--muted);
+}
+
+.page-title {
+  @apply text-3xl font-semibold tracking-tight;
+  color: var(--text);
+}
+
+.page-subtitle {
+  @apply mt-2 max-w-3xl text-sm leading-6;
+  color: var(--soft);
+}
+
+.meta-label {
+  @apply text-[11px] font-semibold uppercase tracking-[0.08em];
+  color: var(--muted);
+}
+
+.meta-value {
+  @apply text-sm;
+  color: var(--text);
 }
 
 .link-accent {
-  color: var(--accent-strong);
-  transition: color 160ms ease;
+  color: var(--link);
 }
 
 .link-accent:hover {
-  color: var(--accent-warm);
+  color: var(--link-hover);
+  text-decoration: underline;
 }
 
 .nav-link {
-  color: var(--muted);
-  transition: color 160ms ease;
+  @apply rounded px-2 py-1 text-sm;
+  color: #e6eef7;
 }
 
 .nav-link:hover {
-  color: var(--text);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }
 
 .chrome-divider {
@@ -88,66 +111,143 @@ a {
 }
 
 .button-primary {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 48%, var(--accent-warm) 100%);
-  color: #441c11;
-  box-shadow:
-    0 16px 30px rgba(216, 91, 53, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transition:
-    transform 180ms ease,
-    filter 180ms ease,
-    box-shadow 180ms ease;
+  @apply inline-flex items-center justify-center rounded px-4 py-2 text-sm font-semibold;
+  background: var(--brand);
+  border: 1px solid #285787;
+  color: #ffffff;
 }
 
 .button-primary:hover {
-  filter: saturate(1.08) brightness(1.03);
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 36px rgba(184, 106, 25, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  background: var(--brand-dark);
 }
 
 .button-secondary {
-  border: 1px solid var(--border);
-  background: rgba(255, 250, 243, 0.74);
-  color: var(--soft);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  transition:
-    color 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    transform 180ms ease;
+  @apply inline-flex items-center justify-center rounded px-4 py-2 text-sm;
+  background: #ffffff;
+  border: 1px solid #aac0d8;
+  color: var(--link);
 }
 
 .button-secondary:hover {
-  border-color: var(--border-strong);
-  background: linear-gradient(135deg, rgba(255, 191, 85, 0.18), rgba(216, 91, 53, 0.14));
-  color: var(--text);
-  transform: translateY(-1px);
+  background: var(--brand-soft);
+  border-color: #8faecc;
+  color: var(--link-hover);
 }
 
 .tag-pill {
-  border: 1px solid rgba(240, 139, 62, 0.22);
-  background: linear-gradient(135deg, rgba(255, 191, 85, 0.22), rgba(216, 91, 53, 0.14));
-  color: #7c331d;
-}
-
-.surface-frame {
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 248, 240, 0.72), rgba(255, 236, 218, 0.92));
+  @apply inline-flex items-center rounded px-2 py-0.5 text-xs font-semibold;
+  background: var(--brand-soft);
+  border: 1px solid #cad9ea;
+  color: #40658e;
 }
 
 .hero-title {
-  background: linear-gradient(135deg, #8f3d18 0%, #d56d23 34%, #f39437 64%, #b5482f 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text);
 }
 
-.prose-custom h1,
-.prose-custom h2,
-.prose-custom h3,
-.prose-custom h4 {
+.panel-header {
+  @apply flex items-center justify-between gap-3 border-b px-4 py-3 text-sm font-semibold;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.panel-body {
+  @apply p-4;
+}
+
+.or-breadcrumb {
+  @apply text-sm;
+  color: var(--muted);
+}
+
+.or-breadcrumb a {
+  color: var(--link);
+}
+
+.or-breadcrumb a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.or-inline-links {
+  @apply flex flex-wrap gap-x-4 gap-y-2 text-sm;
+}
+
+.or-inline-links a {
+  color: var(--link);
+}
+
+.or-inline-links a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.or-info-list {
+  @apply space-y-4;
+}
+
+.or-info-row {
+  @apply space-y-1;
+}
+
+.or-count-grid {
+  @apply grid gap-3 sm:grid-cols-2;
+}
+
+.or-stat-link {
+  @apply rounded border p-3;
+  background: var(--panel-subtle);
+  border-color: var(--border);
+}
+
+.or-stat-link:hover {
+  background: #f1f6fb;
+  border-color: var(--border-strong);
+}
+
+.or-feed-list {
+  @apply divide-y;
+  border-color: var(--border);
+}
+
+.or-feed-row {
+  @apply p-4;
+}
+
+.record-list {
+  @apply space-y-3;
+}
+
+.record-row + .record-row {
+  border-top: 1px solid var(--border);
+}
+
+.record-row-title {
+  @apply text-xl font-semibold leading-snug;
+  color: var(--text);
+}
+
+.record-row-summary {
+  @apply mt-2 text-sm leading-6;
+  color: var(--soft);
+}
+
+.record-meta-line {
+  @apply mt-2 text-sm;
+  color: var(--muted);
+}
+
+.or-topbar {
+  background: var(--brand);
+  border-bottom: 1px solid #2d5a8b;
+}
+
+.or-footer {
+  background: transparent;
+}
+
+.prose-custom {
+  @apply text-[15px] leading-7;
   color: var(--text);
 }
 
@@ -160,29 +260,34 @@ a {
 }
 
 .prose-custom h1 {
-  @apply mt-12 text-4xl font-semibold tracking-tight md:text-5xl;
+  @apply mt-10 text-3xl font-semibold tracking-tight;
+  color: var(--text);
 }
 
 .prose-custom h2 {
-  @apply mt-12 text-3xl font-semibold tracking-tight md:text-4xl;
+  @apply mt-10 text-2xl font-semibold tracking-tight;
+  color: var(--text);
 }
 
 .prose-custom h3 {
-  @apply mt-10 text-2xl font-semibold tracking-tight md:text-3xl;
+  @apply mt-8 text-xl font-semibold;
+  color: var(--text);
 }
 
 .prose-custom h4 {
-  @apply mt-8 text-xl font-semibold md:text-2xl;
+  @apply mt-6 text-lg font-semibold;
+  color: var(--text);
 }
 
 .prose-custom p {
-  @apply my-5 leading-8;
-  color: var(--soft);
+  @apply my-4 leading-7;
+  color: var(--text);
 }
 
 .prose-custom a {
-  @apply underline underline-offset-4;
-  color: var(--accent-strong);
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .prose-custom strong {
@@ -191,79 +296,80 @@ a {
 }
 
 .prose-custom em {
-  color: #87442c;
+  color: var(--soft);
 }
 
 .prose-custom ul {
-  @apply my-5 list-disc pl-6;
-  color: var(--soft);
+  @apply my-4 list-disc pl-6;
+  color: var(--text);
 }
 
 .prose-custom ol {
-  @apply my-5 list-decimal pl-6;
-  color: var(--soft);
+  @apply my-4 list-decimal pl-6;
+  color: var(--text);
 }
 
 .prose-custom li {
-  @apply my-2 pl-1 leading-7;
+  @apply my-1 leading-7;
 }
 
 .prose-custom li > ul,
 .prose-custom li > ol {
-  @apply my-2;
+  @apply my-1;
 }
 
 .prose-custom code {
-  @apply rounded-md px-1.5 py-0.5 font-mono text-sm;
-  background: rgba(216, 91, 53, 0.08);
-  color: #6c2417;
+  @apply rounded px-1.5 py-0.5 font-mono text-[13px];
+  background: #f1f5f9;
+  color: #334155;
 }
 
 .prose-custom pre {
-  @apply my-6 overflow-x-auto rounded-2xl p-5;
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(103, 44, 31, 0.96), rgba(62, 24, 17, 0.98));
+  @apply my-5 overflow-x-auto rounded p-4;
+  background: #26313f;
+  border: 1px solid #1b2430;
 }
 
 .prose-custom pre code {
   @apply bg-transparent p-0;
-  color: #fff4eb;
+  color: #f8fafc;
 }
 
 .prose-custom blockquote {
-  @apply my-6 border-l-2 pl-5 italic;
-  border-color: rgba(184, 106, 25, 0.45);
-  color: #7b3f28;
+  @apply my-5 border-l-4 pl-4 italic;
+  border-color: #bfd0e2;
+  color: var(--soft);
 }
 
 .prose-custom hr {
-  @apply my-10;
+  @apply my-8;
   border-color: var(--border);
 }
 
 .prose-custom img {
-  @apply my-8 rounded-2xl;
+  @apply my-6 rounded;
   border: 1px solid var(--border);
 }
 
 .prose-custom table {
-  @apply my-8 w-full border-collapse text-left;
-  color: var(--soft);
+  @apply my-6 w-full border-collapse text-left text-sm;
+  color: var(--text);
 }
 
 .prose-custom th {
-  @apply px-4 py-3 font-semibold;
-  border-bottom: 1px solid var(--border);
+  @apply px-3 py-2 font-semibold;
+  background: var(--panel-subtle);
+  border: 1px solid var(--border);
   color: var(--text);
 }
 
 .prose-custom td {
-  @apply px-4 py-3 align-top;
-  border-bottom: 1px solid rgba(216, 112, 53, 0.08);
+  @apply px-3 py-2 align-top;
+  border: 1px solid var(--border);
 }
 
 .prose-custom .katex-display {
-  @apply my-6 overflow-x-auto overflow-y-hidden py-2;
+  @apply my-5 overflow-x-auto overflow-y-hidden py-2;
 }
 
 .prose-custom .katex {

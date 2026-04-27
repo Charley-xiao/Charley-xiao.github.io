@@ -1,82 +1,201 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import Card from '../components/Card.astro';
-import HighlightList from '../components/HighlightList.astro';
 import { awardItems, newsItems, publicationItems } from '../data/highlights';
 import { getCollection } from 'astro:content';
 
-const blogs = (await getCollection('blogs'))
-  .sort((a, b) => b.data.order - a.data.order)
-  .slice(0, 3);
+const allBlogs = (await getCollection('blogs')).sort((a, b) => b.data.order - a.data.order);
+const allResearch = (await getCollection('research')).sort((a, b) => b.data.order - a.data.order);
+const allProjects = (await getCollection('projects')).sort((a, b) => b.data.order - a.data.order);
 
-const research = (await getCollection('research'))
-  .sort((a, b) => b.data.order - a.data.order)
-  .slice(0, 3);
+const blogs = allBlogs.slice(0, 3);
+const research = allResearch.slice(0, 3);
+const projects = allProjects.slice(0, 3);
 
-const projects = (await getCollection('projects'))
-  .sort((a, b) => b.data.order - a.data.order)
-  .slice(0, 4);
-
-const latestNews = newsItems.slice(0, 2);
-const featuredPublications = publicationItems.slice(0, 2);
-const featuredAwards = awardItems.slice(0, 2);
+const stats = [
+  { label: 'Research Records', value: String(allResearch.length), href: '/research' },
+  { label: 'Project Submissions', value: String(allProjects.length), href: '/projects' },
+  { label: 'Forum Notes', value: String(allBlogs.length), href: '/blogs' },
+  { label: 'Awards Logged', value: String(awardItems.length), href: '/awards' }
+];
 ---
 
-<BaseLayout title="Qiwen Xiao" description="Personal website of Qiwen Xiao">
-  <Hero />
+<BaseLayout title="Qiwen Xiao" description="OpenQiwen: a personal website redesigned as an OpenReview-style parody">
+  <div class="space-y-4">
+    <Hero />
 
-  <section class="mt-16">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 class="text-3xl font-semibold">Latest News</h2>
-      <a href="/news" class="link-accent text-sm">See all</a>
-    </div>
-    <HighlightList items={latestNews} compact={true} columns={2} />
-  </section>
+    <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div class="space-y-4">
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Research Records</span>
+            <a href="/research" class="link-accent text-sm">View all</a>
+          </div>
+          <div class="or-feed-list">
+            {research.map((item) => (
+              <article class="or-feed-row">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="min-w-0">
+                    <p class="page-kicker">{item.data.organization || 'Research'}</p>
+                    <h2 class="mt-1 text-lg font-semibold">
+                      <a href={`/research/${item.id}/`} class="link-accent">{item.data.title}</a>
+                    </h2>
+                    <p class="record-meta-line mt-1">
+                      {item.data.year}{item.data.role ? ` / ${item.data.role}` : ''}
+                    </p>
+                    <p class="record-row-summary mt-2">{item.data.summary}</p>
+                  </div>
 
-  <section class="mt-16">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 class="text-3xl font-semibold">Publications</h2>
-      <a href="/publications" class="link-accent text-sm">See all</a>
-    </div>
-    <HighlightList items={featuredPublications} compact={true} columns={2} />
-  </section>
+                  {item.data.teaser && (
+                    <a
+                      href={`/research/${item.id}/`}
+                      class="hidden shrink-0 overflow-hidden rounded border border-[color:var(--border)] bg-[color:var(--panel-subtle)] sm:block"
+                    >
+                      <img
+                        src={item.data.teaser}
+                        alt={`${item.data.title} teaser`}
+                        class="h-20 w-28 object-cover"
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-  <section class="mt-8">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 class="text-3xl font-semibold">Selected Research</h2>
-      <a href="/research" class="link-accent text-sm">See all</a>
-    </div>
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {research.map((item) => <Card href={`/research/${item.id}/`} item={item} />)}
-    </div>
-  </section>
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Project Submissions</span>
+            <a href="/projects" class="link-accent text-sm">View all</a>
+          </div>
+          <div class="or-feed-list">
+            {projects.map((item) => (
+              <article class="or-feed-row">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="min-w-0">
+                    <p class="page-kicker">{item.data.organization || 'Project'}</p>
+                    <h2 class="mt-1 text-lg font-semibold">
+                      <a href={`/projects/${item.id}/`} class="link-accent">{item.data.title}</a>
+                    </h2>
+                    <p class="record-meta-line mt-1">
+                      {item.data.year}{item.data.role ? ` / ${item.data.role}` : ''}
+                    </p>
+                    <p class="record-row-summary mt-2">{item.data.summary}</p>
+                  </div>
 
-  <section class="mt-16">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 class="text-3xl font-semibold">Selected Projects</h2>
-      <a href="/projects" class="link-accent text-sm">See all</a>
-    </div>
-    <div class="grid gap-6 md:grid-cols-2">
-      {projects.map((item) => <Card href={`/projects/${item.id}/`} item={item} />)}
-    </div>
-  </section>
+                  {item.data.teaser && (
+                    <a
+                      href={`/projects/${item.id}/`}
+                      class="hidden shrink-0 overflow-hidden rounded border border-[color:var(--border)] bg-[color:var(--panel-subtle)] sm:block"
+                    >
+                      <img
+                        src={item.data.teaser}
+                        alt={`${item.data.title} teaser`}
+                        class="h-20 w-28 object-cover"
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
 
-  <section class="mt-16">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 class="text-3xl font-semibold">Awards</h2>
-      <a href="/awards" class="link-accent text-sm">See all</a>
-    </div>
-    <HighlightList items={featuredAwards} compact={true} columns={2} />
-  </section>
+      <aside class="space-y-4">
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Overview</span>
+          </div>
+          <div class="panel-body or-count-grid">
+            {stats.map((item) => (
+              <a href={item.href} class="or-stat-link">
+                <p class="meta-label">{item.label}</p>
+                <p class="mt-2 text-2xl font-semibold text-main-ui">{item.value}</p>
+              </a>
+            ))}
+          </div>
+        </section>
 
-  <section class="mt-16">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 class="text-3xl font-semibold">Recent Blogs</h2>
-      <a href="/blogs" class="link-accent text-sm">See all</a>
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>News</span>
+            <a href="/news" class="link-accent text-sm">View all</a>
+          </div>
+          <div class="or-feed-list">
+            {newsItems.length > 0 ? (
+              newsItems.slice(0, 3).map((item) => (
+                <article class="or-feed-row">
+                  <p class="page-kicker">{item.date}</p>
+                  <h2 class="mt-1 text-base font-semibold text-main-ui">{item.title}</h2>
+                  <p class="record-meta-line mt-1">{item.subtitle}</p>
+                </article>
+              ))
+            ) : (
+              <div class="panel-body text-sm text-soft-ui">No news items are published yet.</div>
+            )}
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Publications</span>
+            <a href="/publications" class="link-accent text-sm">View all</a>
+          </div>
+          <div class="or-feed-list">
+            {publicationItems.length > 0 ? (
+              publicationItems.slice(0, 3).map((item) => (
+                <article class="or-feed-row">
+                  <p class="page-kicker">{item.date}</p>
+                  <h2 class="mt-1 text-base font-semibold text-main-ui">{item.title}</h2>
+                  <p class="record-meta-line mt-1">{item.subtitle}</p>
+                </article>
+              ))
+            ) : (
+              <div class="panel-body text-sm text-soft-ui">
+                Publication records are ready for review, but none have been posted yet.
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Awards</span>
+            <a href="/awards" class="link-accent text-sm">View all</a>
+          </div>
+          <div class="or-feed-list">
+            {awardItems.slice(0, 3).map((item) => (
+              <article class="or-feed-row">
+                <p class="page-kicker">{item.date}</p>
+                <h2 class="mt-1 text-base font-semibold text-main-ui">{item.title}</h2>
+                <p class="record-meta-line mt-1">{item.subtitle}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Forum Notes</span>
+            <a href="/blogs" class="link-accent text-sm">View all</a>
+          </div>
+          <div class="or-feed-list">
+            {blogs.map((item) => (
+              <article class="or-feed-row">
+                <p class="page-kicker">{item.data.year}</p>
+                <h2 class="mt-1 text-base font-semibold">
+                  <a href={`/blogs/${item.id}/`} class="link-accent">{item.data.title}</a>
+                </h2>
+                <p class="record-row-summary mt-2">{item.data.summary}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </aside>
     </div>
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {blogs.map((item) => <Card href={`/blogs/${item.id}/`} item={item} />)}
-    </div>
-  </section>
+  </div>
 </BaseLayout>

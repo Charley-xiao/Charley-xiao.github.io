@@ -4,10 +4,12 @@ import Tag from '../components/Tag.astro';
 
 const { entry } = Astro.props;
 const data = entry.data;
+
 const hasActionUrl = (url?: string) => {
   const normalizedUrl = url?.trim();
   return Boolean(normalizedUrl && normalizedUrl !== '#');
 };
+
 const actionLinks = [
   { href: data.reportUrl, label: 'Report' },
   { href: data.repoUrl, label: 'Repository' },
@@ -15,38 +17,151 @@ const actionLinks = [
   { href: data.demoUrl, label: 'Demo' },
   { href: data.posterUrl, label: 'Slides' }
 ].filter(({ href }) => hasActionUrl(href));
+
+const collectionConfig = {
+  research: {
+    label: 'Research Record',
+    listLabel: 'Research',
+    href: '/research'
+  },
+  projects: {
+    label: 'Project Submission',
+    listLabel: 'Projects',
+    href: '/projects'
+  },
+  blogs: {
+    label: 'Forum Note',
+    listLabel: 'Notes',
+    href: '/blogs'
+  }
+} as const;
+
+const collectionMeta =
+  collectionConfig[entry.collection as keyof typeof collectionConfig] ?? {
+    label: 'Record',
+    listLabel: 'Records',
+    href: '/'
+  };
+
+const metadataLine = [data.organization, data.role].filter(Boolean).join(' / ');
+const detailItems = [
+  { label: 'Record Type', value: collectionMeta.label },
+  { label: 'Collection', value: collectionMeta.listLabel },
+  { label: 'Year', value: String(data.year) },
+  { label: 'Date Range', value: data.dateRange },
+  { label: 'Organization', value: data.organization },
+  { label: 'Role', value: data.role }
+].filter((item) => item.value);
 ---
 
 <BaseLayout title={`${data.title} | Qiwen Xiao`} description={data.summary}>
-  <article class="mx-auto max-w-4xl">
-    <div class="mb-8">
-      <p class="text-muted-ui mb-2 text-sm">
-        {data.organization ? `${data.organization} · ` : ''}{data.year}
-      </p>
-      <h1 class="text-4xl font-semibold tracking-tight">{data.title}</h1>
-      <p class="text-soft-ui mt-4 text-lg">{data.summary}</p>
+  <article class="space-y-4">
+    <nav class="or-breadcrumb">
+      <a href="/">OpenQiwen</a>
+      {' / '}
+      <a href={collectionMeta.href}>{collectionMeta.listLabel}</a>
+      {' / '}
+      <span>{data.title}</span>
+    </nav>
 
-      <div class="mt-5 flex flex-wrap gap-2">
-        {data.tags.map((tag: string) => <Tag label={tag} />)}
+    <section class="section-panel">
+      <div class="p-5">
+        <p class="page-kicker">{collectionMeta.label}</p>
+        <h1 class="page-title mt-2">{data.title}</h1>
+
+        <p class="record-meta-line mt-3">
+          <a href="/about" class="link-accent">Qiwen Xiao</a>
+          {metadataLine ? ` / ${metadataLine}` : ''}
+        </p>
+
+        <p class="record-meta-line mt-1">Published: {data.year}</p>
+
+        {data.tags.length > 0 && (
+          <p class="record-meta-line mt-2">
+            Keywords: {data.tags.join(', ')}
+          </p>
+        )}
+
+        <div class="mt-4 rounded border border-[color:var(--border)] bg-[color:var(--panel-subtle)] p-4">
+          <p class="meta-label">TL;DR</p>
+          <p class="mt-2 text-sm leading-6 text-main-ui">{data.summary}</p>
+        </div>
+
+        {actionLinks.length > 0 && (
+          <div class="or-inline-links mt-4">
+            {actionLinks.map(({ href, label }) => (
+              <a href={href}>{label}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
+      <div class="space-y-4">
+        {data.teaser && (
+          <section class="section-panel overflow-hidden">
+            <div class="panel-header">
+              <span>Figure</span>
+            </div>
+            <div class="panel-body">
+              <img src={data.teaser} alt={`${data.title} preview`} class="w-full rounded" />
+            </div>
+          </section>
+        )}
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Submission Content</span>
+          </div>
+          <div class="panel-body prose-custom">
+            <slot />
+          </div>
+        </section>
       </div>
 
-      {actionLinks.length > 0 && (
-        <div class="mt-6 flex flex-wrap gap-3 text-sm">
-          {actionLinks.map(({ href, label }) => (
-            <a href={href} class="button-secondary rounded-xl px-4 py-2">
-              {label}
-            </a>
-          ))}
-        </div>
-      )}
-    </div>
+      <aside class="space-y-4">
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Record Details</span>
+          </div>
+          <div class="panel-body or-info-list">
+            {detailItems.map((item) => (
+              <div class="or-info-row">
+                <p class="meta-label">{item.label}</p>
+                <p class="meta-value">{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-    <div class="surface-frame mb-8 overflow-hidden rounded-3xl">
-      <img src={data.teaser} alt={`${data.title} teaser`} class="h-auto w-full" />
-    </div>
+        {data.tags.length > 0 && (
+          <section class="section-panel">
+            <div class="panel-header">
+              <span>Keywords</span>
+            </div>
+            <div class="panel-body flex flex-wrap gap-2">
+              {data.tags.map((tag: string) => <Tag label={tag} />)}
+            </div>
+          </section>
+        )}
 
-    <div class="prose-custom">
-      <slot />
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Navigation</span>
+          </div>
+          <div class="panel-body space-y-2 text-sm">
+            <p>
+              <a href={collectionMeta.href} class="link-accent">
+                View all {collectionMeta.listLabel}
+              </a>
+            </p>
+            <p>
+              <a href="/about" class="link-accent">Profile</a>
+            </p>
+          </div>
+        </section>
+      </aside>
     </div>
   </article>
 </BaseLayout>

@@ -4,15 +4,18 @@ import { awardItems } from '../data/highlights';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Awards | Qiwen Xiao" description="Selected awards and recognitions earned by Qiwen Xiao">
-  <section class="py-8">
-    <h1 class="text-4xl font-semibold tracking-tight">Awards</h1>
-    <p class="text-soft-ui mt-4 max-w-3xl">
-      Selected academic recognitions and project distinctions.
-    </p>
-  </section>
+<BaseLayout title="Awards | Qiwen Xiao" description="Awards and recognitions earned by Qiwen Xiao">
+  <div class="space-y-4">
+    <section class="section-panel p-5">
+      <p class="page-kicker">Index</p>
+      <h1 class="page-title mt-2">Awards</h1>
+      <p class="page-subtitle">
+        A small ledger of competitions, distinctions, and course outcomes that managed to survive internal audit.
+      </p>
+    </section>
 
-  <section>
-    <HighlightList items={awardItems} />
-  </section>
+    <section>
+      <HighlightList items={awardItems} />
+    </section>
+  </div>
 </BaseLayout>

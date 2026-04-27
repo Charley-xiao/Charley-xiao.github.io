@@ -4,15 +4,18 @@ import { newsItems } from '../data/highlights';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="News | Qiwen Xiao" description="Recent milestones, research updates, and project news from Qiwen Xiao">
-  <section class="py-8">
-    <h1 class="text-4xl font-semibold tracking-tight">News</h1>
-    <p class="text-soft-ui mt-4 max-w-3xl">
-      Recent milestones across research, coursework, and projects.
-    </p>
-  </section>
+<BaseLayout title="News | Qiwen Xiao" description="Recent milestones and updates from Qiwen Xiao">
+  <div class="space-y-4">
+    <section class="section-panel p-5">
+      <p class="page-kicker">Index</p>
+      <h1 class="page-title mt-2">News</h1>
+      <p class="page-subtitle">
+        Recent milestones across research, courses, projects, and anything else that felt worthy of an official log.
+      </p>
+    </section>
 
-  <section>
-    <HighlightList items={newsItems} columns={2} />
-  </section>
+    <section>
+      <HighlightList items={newsItems} />
+    </section>
+  </div>
 </BaseLayout>

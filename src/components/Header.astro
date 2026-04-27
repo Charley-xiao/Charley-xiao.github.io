@@ -1,21 +1,24 @@
 ---
 const nav = [
   { href: '/', label: 'Home' },
+  { href: '/about', label: 'Profile' },
   { href: '/research', label: 'Research' },
   { href: '/projects', label: 'Projects' },
+  { href: '/blogs', label: 'Notes' },
   { href: '/publications', label: 'Publications' },
   { href: '/news', label: 'News' },
   { href: '/awards', label: 'Awards' },
-  { href: '/about', label: 'About' },
-  { href: '/cv', label: 'CV' },
-  { href: '/blogs', label: 'Blogs' }
+  { href: '/cv', label: 'CV' }
 ];
 ---
 
-<header class="chrome-divider border-b">
-  <div class="container-shell flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">
-    <a href="/" class="text-main-ui text-lg font-semibold tracking-tight">Qiwen Xiao</a>
-    <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm md:justify-end">
+<header class="or-topbar">
+  <div class="container-shell flex flex-col gap-3 py-3 md:flex-row md:items-center md:justify-between">
+    <div>
+      <a href="/" class="text-lg font-semibold tracking-tight text-white">OpenQiwen.net</a>
+      <!-- <p class="mt-1 text-xs text-blue-100">Open notes. Open projects. Open self-review.</p> -->
+    </div>
+    <nav class="flex flex-wrap gap-x-2 gap-y-2 md:justify-end">
       {nav.map((item) => (
         <a href={item.href} class="nav-link">{item.label}</a>
       ))}

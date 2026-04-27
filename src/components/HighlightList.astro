@@ -16,31 +16,31 @@ const {
   showTags = !compact
 } = Astro.props;
 
-const gridClass = columns === 2 ? 'grid gap-6 xl:grid-cols-2' : 'grid gap-5';
+const wrapperClass = columns === 2 ? 'grid gap-3 xl:grid-cols-2' : 'record-list';
 const isExternalLink = (href: string) => href.startsWith('http') || href.endsWith('.pdf');
 ---
 
-<div class={gridClass}>
+<div class={wrapperClass}>
   {items.map((item) => (
-    <article class={`card-surface rounded-3xl ${compact ? 'p-5' : 'p-6'}`}>
-      <div class="flex flex-wrap items-start justify-between gap-3">
-        <div class="max-w-3xl">
-          <p class="accent-kicker text-sm">{item.subtitle}</p>
-          <h3 class={`text-main-ui mt-2 font-semibold ${compact ? 'text-lg' : 'text-xl'}`}>{item.title}</h3>
+    <article class={`card-surface rounded ${compact ? 'p-4' : 'p-5'}`}>
+      <div class="flex items-start justify-between gap-4">
+        <div class="min-w-0">
+          <p class="page-kicker">{item.subtitle}</p>
+          <h3 class={`mt-1 font-semibold ${compact ? 'text-lg' : 'text-xl'} text-main-ui`}>{item.title}</h3>
         </div>
-        <p class="text-muted-ui shrink-0 text-sm">{item.date}</p>
+        <p class="shrink-0 text-xs text-[color:var(--muted)]">{item.date}</p>
       </div>
 
-      <p class={`text-soft-ui mt-4 ${compact ? 'text-sm leading-6' : 'leading-7'}`}>{item.summary}</p>
+      <p class={`mt-2 ${compact ? 'text-sm leading-6' : 'text-sm leading-7'} text-soft-ui`}>{item.summary}</p>
 
       {showTags && item.tags && item.tags.length > 0 && (
-        <div class="mt-4 flex flex-wrap gap-2">
+        <div class="mt-3 flex flex-wrap gap-2">
           {item.tags.map((tag) => <Tag label={tag} />)}
         </div>
       )}
 
       {item.links && item.links.length > 0 && (
-        <div class="mt-4 flex flex-wrap gap-4 text-sm">
+        <div class="mt-3 flex flex-wrap gap-3 text-sm">
           {item.links.map((link) => (
             <a
               href={link.href}

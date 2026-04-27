@@ -1,17 +1,174 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const recentResearch = (await getCollection('research'))
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 2)
+  .map((item) => ({
+    title: item.data.title,
+    href: `/research/${item.id}/`,
+    type: 'Research',
+    meta: [item.data.organization, item.data.year].filter(Boolean).join(' / ')
+  }));
+
+const recentProjects = (await getCollection('projects'))
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 2)
+  .map((item) => ({
+    title: item.data.title,
+    href: `/projects/${item.id}/`,
+    type: 'Project',
+    meta: [item.data.organization, item.data.year].filter(Boolean).join(' / ')
+  }));
+
+const recentNotes = (await getCollection('blogs'))
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 2)
+  .map((item) => ({
+    title: item.data.title,
+    href: `/blogs/${item.id}/`,
+    type: 'Note',
+    meta: [item.data.organization, item.data.year].filter(Boolean).join(' / ')
+  }));
+
+const recentRecords = [...recentResearch, ...recentProjects, ...recentNotes].slice(0, 6);
 ---
 
-<BaseLayout title="About | Qiwen Xiao" description="About Qiwen Xiao">
-  <section class="mx-auto max-w-3xl py-10">
-    <h1 class="text-4xl font-semibold tracking-tight">About</h1>
-    <div class="prose-custom mt-8">
-      <p>
-        I am a CS undergraduate student interested in deep learning, computer vision, and high-performance computing.
-      </p>
-      <p>
-        I am currently affiliated with SUSTech.
-      </p>
+<BaseLayout title="Profile | Qiwen Xiao" description="Profile page for Qiwen Xiao">
+  <div class="space-y-4">
+    <section class="section-panel">
+      <div class="p-5">
+        <p class="page-kicker">Profile</p>
+        <h1 class="page-title mt-2">Qiwen Xiao</h1>
+        <p class="record-meta-line mt-3">
+          Southern University of Science and Technology / University of California, Irvine / Shenzhen MSU-BIT
+          University
+        </p>
+        <p class="page-subtitle mt-3">
+          Undergraduate student in computer science working across generative modeling,
+          computer vision, and performance-oriented systems work.
+        </p>
+      </div>
+    </section>
+
+    <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div class="space-y-4">
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Profile Information</span>
+          </div>
+          <div class="panel-body grid gap-4 md:grid-cols-2">
+            <div class="or-info-row">
+              <p class="meta-label">Current Roles</p>
+              <p class="meta-value">
+                CSE undergraduate at SUSTech.
+              </p>
+            </div>
+            <div class="or-info-row">
+              <p class="meta-label">Primary Areas</p>
+              <p class="meta-value">Flow matching, computational imaging, computer vision, HPC, and code intelligence.</p>
+            </div>
+            <!-- <div class="or-info-row">
+              <p class="meta-label">Working Style</p>
+              <p class="meta-value">
+                I like building from first principles, testing fast, and writing notes that are useful to my future
+                self.
+              </p>
+            </div>
+            <div class="or-info-row">
+              <p class="meta-label">Current Theme</p>
+              <p class="meta-value">Turning a personal site into an over-committed review platform parody.</p>
+            </div> -->
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Affiliations</span>
+          </div>
+          <div class="panel-body space-y-4">
+            <div class="or-info-row">
+              <p class="meta-label">Southern University of Science and Technology (2022-2026)</p>
+              <p class="meta-value">B.Eng. in Computer Science and Technology</p>
+            </div>
+            <div class="or-info-row">
+              <p class="meta-label">University of California, Irvine (2025-2026)</p>
+              <p class="meta-value">Visiting student in Electrical Engineering and Computer Science.</p>
+            </div>
+            <div class="or-info-row">
+              <p class="meta-label">Shenzhen MSU-BIT University (2023-2025)</p>
+              <p class="meta-value">Research Assistant at the Artificial Intelligence Research Institute.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Recent Records</span>
+            <a href="/" class="link-accent text-sm">Back to homepage</a>
+          </div>
+          <div class="or-feed-list">
+            {recentRecords.map((item) => (
+              <article class="or-feed-row">
+                <p class="page-kicker">{item.type}</p>
+                <h2 class="mt-1 text-lg font-semibold">
+                  <a href={item.href} class="link-accent">{item.title}</a>
+                </h2>
+                <p class="record-meta-line mt-1">{item.meta}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <aside class="space-y-4">
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Contact</span>
+          </div>
+          <div class="panel-body or-info-list">
+            <div class="or-info-row">
+              <p class="meta-label">Email</p>
+              <p class="meta-value">charleyxiao057@gmail.com</p>
+            </div>
+            <div class="or-info-row">
+              <p class="meta-label">Location</p>
+              <p class="meta-value">Shenzhen</p>
+            </div>
+            <div class="or-info-row">
+              <p class="meta-label">Status</p>
+              <p class="meta-value">Doing research in computational imaging and generative models.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Quick Links</span>
+          </div>
+          <div class="panel-body space-y-2 text-sm">
+            <p><a href="/research" class="link-accent">Research records</a></p>
+            <p><a href="/projects" class="link-accent">Project submissions</a></p>
+            <p><a href="/blogs" class="link-accent">Forum notes</a></p>
+            <p><a href="/cv" class="link-accent">Curriculum vitae</a></p>
+          </div>
+        </section>
+
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>Keywords</span>
+          </div>
+          <div class="panel-body flex flex-wrap gap-2">
+            <span class="tag-pill">Flow Matching</span>
+            <span class="tag-pill">Computational Optics</span>
+            <span class="tag-pill">Vision</span>
+            <span class="tag-pill">HPC</span>
+            <span class="tag-pill">Generative Models</span>
+            <span class="tag-pill">Systems</span>
+          </div>
+        </section>
+      </aside>
     </div>
-  </section>
+  </div>
 </BaseLayout>

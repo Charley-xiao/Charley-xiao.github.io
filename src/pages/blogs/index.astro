@@ -6,15 +6,18 @@ import { getCollection } from 'astro:content';
 const items = (await getCollection('blogs')).sort((a, b) => b.data.order - a.data.order);
 ---
 
-<BaseLayout title="Blogs | Qiwen Xiao" description="Notes on papers, talks, and thoughts by Qiwen Xiao">
-  <section class="py-8">
-    <h1 class="text-4xl font-semibold tracking-tight">Blogs</h1>
-    <p class="text-soft-ui mt-4 max-w-3xl">
-      Notes on papers, talks, experiments, and thoughts that are still taking shape.
-    </p>
-  </section>
+<BaseLayout title="Notes | Qiwen Xiao" description="Paper notes, talk notes, and thoughts by Qiwen Xiao">
+  <div class="space-y-4">
+    <section class="section-panel p-5">
+      <p class="page-kicker">Index</p>
+      <h1 class="page-title mt-2">Notes</h1>
+      <p class="page-subtitle">
+        Paper notes, talk notes, experiments, and the occasional thought that was not supposed to become a full post.
+      </p>
+    </section>
 
-  <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-    {items.map((item) => <Card href={`/blogs/${item.id}/`} item={item} />)}
-  </section>
+    <section class="space-y-3">
+      {items.map((item) => <Card href={`/blogs/${item.id}/`} item={item} />)}
+    </section>
+  </div>
 </BaseLayout>
