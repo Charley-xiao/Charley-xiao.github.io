@@ -9,6 +9,7 @@ const allResearch = (await getCollection('research')).sort((a, b) => b.data.orde
 const allProjects = (await getCollection('projects')).sort((a, b) => b.data.order - a.data.order);
 
 const blogs = allBlogs.slice(0, 3);
+const latestNews = newsItems.slice(0, 3);
 const research = allResearch.slice(0, 3);
 const projects = allProjects.slice(0, 3);
 
@@ -26,6 +27,26 @@ const stats = [
 
     <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
       <div class="space-y-4">
+        <section class="section-panel">
+          <div class="panel-header">
+            <span>News</span>
+            <a href="/news" class="link-accent text-sm">View all</a>
+          </div>
+          <div class="or-feed-list">
+            {latestNews.length > 0 ? (
+              latestNews.map((item) => (
+                <article class="or-feed-row">
+                  <p class="page-kicker">{item.date}</p>
+                  <h2 class="mt-1 text-base font-semibold text-main-ui">{item.title}</h2>
+                  <p class="record-meta-line mt-1">{item.subtitle}</p>
+                </article>
+              ))
+            ) : (
+              <div class="panel-body text-sm text-soft-ui">No news items are published yet.</div>
+            )}
+          </div>
+        </section>
+
         <section class="section-panel">
           <div class="panel-header">
             <span>Research Records</span>
@@ -117,26 +138,6 @@ const stats = [
                 <p class="mt-2 text-2xl font-semibold text-main-ui">{item.value}</p>
               </a>
             ))}
-          </div>
-        </section>
-
-        <section class="section-panel">
-          <div class="panel-header">
-            <span>News</span>
-            <a href="/news" class="link-accent text-sm">View all</a>
-          </div>
-          <div class="or-feed-list">
-            {newsItems.length > 0 ? (
-              newsItems.slice(0, 3).map((item) => (
-                <article class="or-feed-row">
-                  <p class="page-kicker">{item.date}</p>
-                  <h2 class="mt-1 text-base font-semibold text-main-ui">{item.title}</h2>
-                  <p class="record-meta-line mt-1">{item.subtitle}</p>
-                </article>
-              ))
-            ) : (
-              <div class="panel-body text-sm text-soft-ui">No news items are published yet.</div>
-            )}
           </div>
         </section>
 
